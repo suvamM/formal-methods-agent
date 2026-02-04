@@ -38,6 +38,8 @@ def main():
     print("=" * 60)
     print("Example 2: Running Coyote test")
     print("=" * 60)
+    # Note: Replace the path below with an actual .NET assembly path
+    # For example: "./bin/Debug/net8.0/MyApp.dll"
     result = agent.process_request(
         skill_name="coyote",
         operation="test",

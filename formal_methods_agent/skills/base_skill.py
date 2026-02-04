@@ -38,8 +38,10 @@ class Skill(ABC):
             
         Returns:
             Error message from stderr or stdout, stripped of whitespace.
+            Returns "Command failed with no output" if both are empty.
         """
-        return (result.stderr or result.stdout).strip()
+        error_msg = (result.stderr or result.stdout or "").strip()
+        return error_msg if error_msg else "Command failed with no output"
 
     def __str__(self) -> str:
         """String representation of the skill."""
