@@ -2,6 +2,7 @@
 
 from abc import ABC, abstractmethod
 from typing import Any, Dict
+import subprocess
 
 
 class Skill(ABC):
@@ -28,6 +29,17 @@ class Skill(ABC):
             Should include 'success' (bool) and 'message' or 'output' keys.
         """
         pass
+
+    def _extract_error_message(self, result: subprocess.CompletedProcess) -> str:
+        """Extract error message from subprocess result.
+        
+        Args:
+            result: The completed process result.
+            
+        Returns:
+            Error message from stderr or stdout, stripped of whitespace.
+        """
+        return (result.stderr or result.stdout).strip()
 
     def __str__(self) -> str:
         """String representation of the skill."""
