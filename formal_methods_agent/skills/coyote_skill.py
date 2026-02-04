@@ -72,7 +72,7 @@ class CoyoteSkill(Skill):
             return {
                 "success": result.returncode == 0,
                 "output": result.stdout,
-                "error": result.stderr if result.returncode != 0 else None
+                "error": (result.stderr or result.stdout).strip() if result.returncode != 0 else None
             }
         except subprocess.TimeoutExpired:
             return {
@@ -121,7 +121,7 @@ class CoyoteSkill(Skill):
             return {
                 "success": result.returncode == 0,
                 "output": result.stdout,
-                "error": result.stderr if result.returncode != 0 else None
+                "error": (result.stderr or result.stdout).strip() if result.returncode != 0 else None
             }
         except subprocess.TimeoutExpired:
             return {
